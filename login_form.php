@@ -44,9 +44,9 @@
 			New to handcraftAdministrative System
 			<hr>
 				<h3 class="form-signin-heading"><i class="icon-edit"></i> Sign up</h3>
-				<button data-placement="top" title="Sign In as Student" id="signin_student" onclick="window.location='signup_student.php'" id="btn_student" name="login" class="btn btn-info" type="submit">I`m a Student</button>
+				<button data-placement="top" title="Sign In as Student" id="signin_student" onclick="window.location='signup_student.php'" id="btn_student" name="login" class="btn btn-info" type="submit">I`m a Trainee</button>
 				<div class="pull-right">
-					<button data-placement="top" title="Sign In as Teacher" id="signin_teacher" onclick="window.location='signup_teacher.php'" name="login" class="btn btn-info" type="submit">I`m a Teacher</button>
+					<button data-placement="top" title="Sign In as Teacher" id="signin_teacher" onclick="window.location='signup_teacher.php'" name="login" class="btn btn-info" type="submit">I`m a Trainer</button>
 				</div>
 			</div>
 														<script type="text/javascript">

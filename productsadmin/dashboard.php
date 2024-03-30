@@ -293,8 +293,14 @@ if ($result->num_rows > 0) {
         echo "<p>Total Selling Products</p>"; 
         echo "</div>";
     }
-    ?>
+    ?><br><br>
+
+
 </section>
+
+<?php
+    include("sales.php");
+    ?>
 
 
             </div>

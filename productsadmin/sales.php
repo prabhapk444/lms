@@ -40,35 +40,46 @@
    
 
 <?php
-  
-    $selectQuery = "SELECT cart_id ,user_id,product_id, quantity FROM cart";
-    $result = $conn->query($selectQuery);
-    if ($result === false) {
-        echo "Error retrieving data: " . $conn->error;
-    } else {
-       
-        if ($result->num_rows > 0) {
-        
-            echo "<table>";
-            echo "<tr><th>cart_id</th><th>user__Id</th><th>Product_Id</th><th>Quantity</th></tr>";
+include("db.php");
 
-            while ($row = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" .$row["cart_id"] ."</td>";
-                echo "<td>" . $row["user_id"] . "</td>";
-                echo "<td>" . $row["product_id"] . "</td>";
-                echo "<td>" . $row["quantity"] . "</td>";
-                echo "</tr>";
+$selectQuery = "SELECT * FROM cart"; // Added "FROM" clause
+$result = $conn->query($selectQuery);
+
+if ($result === false) {
+    echo "Error retrieving data: " . $conn->error;
+} else {
+    if ($result->num_rows > 0) {
+        echo "<table>";
+        echo "<tr><th>id</th><th>Product_Id</th><th>Product_Name</th><th>Price</th><th>Selling Quantity</th><th>Original Quantity</th></tr>";
+
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["id"] . "</td>";
+            echo "<td>" . $row["product_id"] . "</td>";
+            echo "<td>" . $row["product_name"] . "</td>";
+            echo "<td>₹" . $row["price"] . "</td>";
+            echo "<td>" . $row["quantity"] . "</td>";
+            echo "<td>";
+          
+            $productId = $row["product_id"];
+            $originalQuantityQuery = "SELECT quantity FROM products WHERE product_id = $productId";
+            $originalQuantityResult = $conn->query($originalQuantityQuery);
+            if ($originalQuantityResult->num_rows > 0) {
+                $originalQuantityRow = $originalQuantityResult->fetch_assoc();
+                echo $originalQuantityRow["quantity"];
+            } else {
+                echo "N/A"; 
             }
-
-        
-            echo "</table>";
-        } else {
-            echo "No records found in the payment table.";
+            echo "</td>"; 
+            echo "</tr>";
         }
+        echo "</table>";
+    } else {
+        echo "No records found in the cart table.";
     }
+}
 
-    $conn->close();
+$conn->close();
 ?>
 
 </body>
